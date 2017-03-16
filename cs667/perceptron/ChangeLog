@@ -1,0 +1,10 @@
+0.1		Parser finished
+0.2		Cleaned up main code
+			Redesigned data layout
+0.25	Prototyped perceptron trainer
+0.29	Added sgn function
+			Added more function stubs
+			Added letter copying function
+0.80	First functional version
+1.00	First complete version
+1.05	Added noise generator

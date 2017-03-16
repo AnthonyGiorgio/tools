@@ -1,0 +1,834 @@
+set prompt (kdbg)
+GNU gdb 4.18
+Copyright 1998 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "i386-suse-linux-gnu".
+(gdb) (kdbg)set confirm off
+(kdbg)set print static-members off
+(kdbg)tty /dev/pts/1
+(kdbg)file "perceptron"
+(kdbg)set args .5 1
+(kdbg)break main.cpp:130
+Breakpoint 1 at 0x8049278: file main.cpp, line 130.
+(kdbg)break main.cpp:419
+Breakpoint 2 at 0x8049b76: file main.cpp, line 419.
+(kdbg)info line main
+Line 89 of "main.cpp" starts at address 0x8048e40 <main>
+   and ends at 0x8048e4a <main+10>.
+/home/nitehawk/perceptron/perceptron/main.cpp:89:2670:beg:0x8048e40
+(kdbg)info breakpoints
+Num Type           Disp Enb Address    What
+1   breakpoint     keep y   0x08049278 in main at main.cpp:130
+2   breakpoint     keep y   0x08049b76 in corrupt(perceptron &, float, int)
+                                       at main.cpp:419
+(kdbg)run
+
+Breakpoint 1, main (argc=3, argv=0xbffff8e4) at main.cpp:130
+/home/nitehawk/perceptron/perceptron/main.cpp:130:4062:beg:0x8049278
+(kdbg)info sharedlibrary
+From        To          Syms Read   Shared Object Library
+0x0012f000  0x001760d0  Yes         /usr/lib/libstdc++-libc6.1-1.so.2
+0x00177000  0x00193ed8  Yes         /lib/libm.so.6
+0x00194000  0x0028e63c  Yes         /lib/libc.so.6
+0x00110000  0x001240d0  Yes         /lib/ld-linux.so.2
+(kdbg)info breakpoints
+Num Type           Disp Enb Address    What
+1   breakpoint     keep y   0x08049278 in main at main.cpp:130
+	breakpoint already hit 1 time
+2   breakpoint     keep y   0x08049b76 in corrupt(perceptron &, float, int)
+                                       at main.cpp:419
+(kdbg)bt
+#0  main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+argc = 123
+net = {{weight = {0, -0.5, 0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, 
+      -0.5, -0.5, -0.5, 0.5}, value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 
+      0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, 
+    desired = 0, actual = 0}, {weight = {-2.5, 0.5, -1, -1, -1, -3.5, -2, 0, 
+      -0.5, 0, 0, -2, 0, -0.5, 0, 2.5, -0.5, 1.5, 0.5, 1, -4.5, -0.5, 0, -0.5, 
+      0, 2, -2, 0, -0.5, 0, 1.5, 0.5, 1, 1, 1, -3}, value = {1, 1, 1, 1, 1, 1, 
+      0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {0, -2, 0, 0, 0, 
+      -0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, -1.5, 0, -0.5, -0.5, -0.5, -1.5, 0, 
+      0, 0, 0, -1.5, 0, 0, 0, 0, 0.5, -2, 0, 0, 0, -0.5}, value = {1, 1, 1, 1, 
+      1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 
+      0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {-1.5, 0, 
+      0.5, 0.5, 0.5, -2.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 2, 0, -1, -2.5, -2.5, 
+      0.5, 0, 0, 0, 0, 0.5, -1.5, 0, 0, 0, 0.5, 1.5, -1, -1, -1, -2.5}, 
+    value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {
+    weight = {-3, -1, -0.5, -0.5, -0.5, 1, -1, 0, -1, -0.5, -2, -1, 0, -1.5, 
+      -0.5, -0.5, -0.5, 1.5, 0, 1.5, -1, -0.5, -0.5, -1.5, 0, -1.5, -2, 0, -1, 
+      -0.5, -1.5, -0.5, 2.5, 2.5, 2.5, 4.5}, value = {1, 1, 1, 1, 1, 1, 0, 0, 
+      0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 
+      1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {-0.5, 0.5, 0.5, 0.5, 
+      0.5, 1.5, 0, 0, -0.5, -0.5, -2, 0, 0, -1, 0, -1.5, 0, 0.5, 0, 0.5, -1, 
+      0, 0, -1, 0, -1, 0, 0, -0.5, -0.5, -1, 0.5, -1.5, -1.5, -1.5, -1.5}, 
+    value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {
+    weight = {-1.5, -1.5, -0.5, -0.5, -0.5, -1.5, 0, 0, -1, 0, -0.5, 0, 0, -1, 
+      0, -3.5, 1, -2, 1.5, 2.5, 1, 1, 0, -1, 0, 0, -0.5, 0, -1, 0, -0.5, -1, 
+      -0.5, -0.5, -0.5, -1}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 
+      0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, 
+    desired = 0, actual = 0}, {weight = {-1, -0.5, -1, -1, -1, -0.5, 0, -1, 
+      -0.5, -1.5, 0, 0, 0, -2, 0, 0, 0, 1, 1, 1.5, 0, 0, 0, -1, 0, 0, -0.5, 0, 
+      -0.5, -0.5, 0, 0, -1, -1, -1, 0}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 
+      1, 1}, desired = 0, actual = 0}, {weight = {-0.5, -1.5, -0.5, -0.5, 
+      -0.5, -1.5, -0.5, 0, 0.5, 0, -1, -0.5, 0, 0.5, 0, -0.5, 0, -0.5, 0, 
+      -0.5, -0.5, 0, 0, 0.5, 0, -1, -1, 0, 0.5, 0, -1, 0, 0.5, -0.5, 0.5, 0}, 
+    value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {
+    weight = {-0.5, 1, 0, 0, 0, 1, -2, 0, 0, -0.5, 0, -2, 0, -0.5, 0, 0.5, 
+      -1.5, -1, -0.5, -0.5, 0.5, -1.5, 0, -0.5, 0, 0, -0.5, 0, 0, -0.5, 0, 
+      -0.5, 0, 0, 0, -0.5}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, 
+    desired = 0, actual = 0}, {weight = {-0.5, -0.5, -1, -1, -1, 0.5, 0, -0.5, 
+      -0.5, 1, -1, 0, 0, 0.5, 0, -1, 0, 1, -1, -0.5, -0.5, 0, 0, 0.5, 0, -0.5, 
+      0, 0, -0.5, 1, -0.5, 0, -0.5, -1, -0.5, 0}, value = {1, 1, 1, 1, 1, 1, 
+      0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {-0.5, 0, -1, -1, 
+      -1, -1.5, 0, -0.5, 0, -1, -1.5, 0, 0, -1, -0.5, -0.5, 0, -0.5, -0.5, 0, 
+      -0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0, -0.5, -1, 0, 0.5, 0.5, 0.5, 
+      0}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 
+      0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, 
+    actual = 0}, {weight = {-0.5, 0, -0.5, -0.5, -0.5, 0, -0.5, 1.5, 0, 1, 0, 
+      -0.5, -1, 1, 0, 0, -0.5, -0.5, -1, 0, 0, -0.5, 0, -0.5, -1, 0, -0.5, 0, 
+      0, -0.5, 0, 0, -0.5, -0.5, -0.5, 0}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 
+      0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 
+      1, 1, 1}, desired = 0, actual = 0}, {weight = {-0.5, 0, -0.5, -0.5, 
+      -0.5, 0, -0.5, 0, 0, 0, -0.5, 0, 0.5, 0, -0.5, 0, 0, 0, 0.5, 0, 0, 0, 
+      -0.5, 0, 0.5, 0, 0, -0.5, 0, -0.5, 0, 0.5, -0.5, -1, -0.5, 0.5}, 
+    value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {
+    weight = {-0.5, -1.5, 0.5, 0.5, 0.5, -1, -0.5, 0, 0, 0, -0.5, -0.5, 0, 0, 
+      0, 0.5, 0.5, -1.5, -1.5, -1.5, 1, 0.5, 0, -4.5, 0, 0, -0.5, 0, 0, -4.5, 
+      0, -0.5, 0, 0, 0, -4.5}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 
+      0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, 
+    desired = 0, actual = 0}, {weight = {-0.5, 0.5, 0, 0, 0, -1.5, -0.5, 0, 0, 
+      0, 0.5, 0, -0.5, 0, -0.5, 1.5, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -3.5, 
+      -0.5, -1, -0.5, 0, 0, -3.5, -1.5, 0.5, -1, -1, -1, -4}, value = {1, 1, 
+      1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {-1, 
+      -2, 0, 0, 0, -1, -0.5, 0, -0.5, 0, -0.5, -0.5, 0, -0.5, 0, 0, 0, -1.5, 
+      -2, -1.5, 1, 0, 0, 1, 0, 0.5, -0.5, 0, -0.5, 1.5, 0.5, -1, 0, 0, 0, 
+      1.5}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 
+      0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, 
+    actual = 0}, {weight = {-1.5, 0, 0, 0, 0, -2.5, -1, 0, -0.5, -1, 0.5, -1, 
+      0, -1.5, 0, 1, -0.5, -0.5, 0, 0.5, -1.5, -0.5, 0, 2, 0, -2, -0.5, -0.5, 
+      -0.5, 2, -1.5, 0, -0.5, -1.5, -0.5, 1.5}, value = {1, 1, 1, 1, 1, 1, 0, 
+      0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 
+      1, 1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {-1, -2, 0, 0, 0, 
+      -1.5, -0.5, 0, -0.5, 0, -0.5, 0, -0.5, -0.5, -0.5, -1.5, -2, 1, 0, 1, 
+      -1, -2, -0.5, -0.5, -0.5, 0.5, -0.5, 0, -0.5, 0, -0.5, -1.5, 0.5, 0, 
+      0.5, -1}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, 
+    actual = 0}, {weight = {-0.5, 0, 0.5, 0.5, 0.5, 0, -1, 0, 0.5, 0, -1, 
+      -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0, 0, 0, -0.5, -0.5, 0, 0, 0, -0.5, 
+      -0.5, 0, 0, 0, -0.5, 0, -1, -0.5, -1, 0}, value = {1, 1, 1, 1, 1, 1, 0, 
+      0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 
+      1, 1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {-1.5, -0.5, -2, -2, 
+      -2, 0, -0.5, 0, 0, 0, -1, 0, -0.5, 0, -0.5, 0.5, 0, 0, -0.5, 0, 0.5, 0, 
+      -0.5, -2.5, -0.5, 0.5, 0, -1.5, -2.5, -1.5, 0.5, -1, 0.5, 1.5, 0.5, -1}, 
+    value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {
+    weight = {0 <repeats 23 times>, -0.5, 0, 0, -0.5, 0.5, -0.5, 0.5, -0.5, 0, 
+      -0.5, 0.5, -0.5, 0}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, 
+    desired = 0, actual = 0}, {weight = {-1, -0.5, -1, -1, -1, 0.5, -1, -0.5, 
+      0, -0.5, -0.5, 0, -1, -0.5, -1, 0.5, 0, -0.5, -1.5, -0.5, 0.5, 0, -0.5, 
+      1.5, -0.5, 0.5, -0.5, 0, 1.5, 0, 0, -2.5, 1, -1.5, 1, -2}, value = {1, 
+      1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
+      0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {weight = {
+      -0.5, 0, -1, -1, -1, 0, 0, 0, 0, 0, -0.5, -0.5, 0.5, 0, 0, -0.5, -0.5, 
+      -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 1, -0.5, 0, 0, -0.5, 0, 0.5, 0, 
+      -0.5, -1, -0.5, 0}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, 
+    desired = 0, actual = 0}, {weight = {-0.5, -0.5, -1, -1, -1, -0.5, 0.5, 0, 
+      -0.5, 0, 0, -0.5, 1, -0.5, 0.5, -0.5, -0.5, 0, 0, 0, -0.5, -0.5, -0.5, 
+      0.5, 0, -0.5, -0.5, -0.5, 0.5, -0.5, 0, -0.5, -0.5, -0.5, -0.5, -0.5}, 
+    value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 
+      1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, desired = 0, actual = 0}, {
+    weight = {-0.5, 0.5, 0, 0, 0, 0.5, -1.5, 0, -0.5, 0, 0.5, -1, -0.5, -0.5, 
+      1, -0.5, -1, -1, -0.5, -1, -0.5, -1, 1, -0.5, -0.5, -0.5, 0, 0, -0.5, 0, 
+      -1, 0, 0.5, 0.5, 0.5, 0}, value = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 
+      0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}, 
+    desired = 1, actual = 1}}
+letterbase = {{letter = 97 'a', matrix = {0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 
+      0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1}}, {letter = 98 'b', matrix = {0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 
+      0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0}}, {
+    letter = 99 'c', matrix = {0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 
+      1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0}}, {
+    letter = 100 'd', matrix = {0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0}}, {
+    letter = 101 'e', matrix = {0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 
+      0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}}, {
+    letter = 102 'f', matrix = {0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 
+      0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0}}, {
+    letter = 103 'g', matrix = {0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0}}, {
+    letter = 104 'h', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}}, {
+    letter = 105 'i', matrix = {0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
+      0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0}}, {
+    letter = 106 'j', matrix = {0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
+      1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0}}, {
+    letter = 107 'k', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 
+      0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1}}, {
+    letter = 108 'l', matrix = {0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 
+      0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}}, {
+    letter = 109 'm', matrix = {0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 
+      1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}}, {
+    letter = 110 'n', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 
+      1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}}, {
+    letter = 111 'o', matrix = {0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0}}, {
+    letter = 112 'p', matrix = {0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0}}, {
+    letter = 113 'q', matrix = {0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1}}, {
+    letter = 114 'r', matrix = {0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1}}, {
+    letter = 115 's', matrix = {0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0}}, {
+    letter = 116 't', matrix = {0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
+      0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0}}, {
+    letter = 117 'u', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0}}, {
+    letter = 118 'v', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0}}, {
+    letter = 119 'w', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 
+      1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0}}, {
+    letter = 120 'x', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 
+      0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}}, {
+    letter = 121 'y', matrix = {0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 
+      0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0}}, {
+    letter = 122 'z', matrix = {0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 
+      0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}}}
+learning_rate = 0.5
+infile = {<fstreambase> = {<ios> = {<_ios_fields> = {_strbuf = 0xbfffcabc, 
+        _tie = 0x0, _width = 0, _flags = 17, _fill = 32, _state = 0 '\000', 
+        _exceptions = 0 '\000', _precision = 6, _arrays = 0x0}, 
+      _vptr. = 0x804b2f0 <ifstream::ios virtual table>}, _vb.ios = 0xbfffcb5c, 
+    __my_fb = {<streambuf> = {<_IO_FILE> = {_flags = -72539124, 
+          _IO_read_ptr = 0x0, _IO_read_end = 0x0, _IO_read_base = 0x0, 
+          _IO_write_base = 0x0, _IO_write_ptr = 0x0, _IO_write_end = 0x0, 
+          _IO_buf_base = 0x0, _IO_buf_end = 0x0, _IO_save_base = 0x0, 
+          _IO_backup_base = 0x0, _IO_save_end = 0x0, _markers = 0x0, 
+          _chain = 0x169020, _fileno = -1, _blksize = 0, _old_offset = 0, 
+          _cur_column = 0, _unused = 0 '\000', _shortbuf = "", 
+          _lock = 0x804b350, _offset = -1, _unused2 = {0 <repeats 16 times>}}, 
+        _vptr. = 0x1691e0 <filebuf virtual table>}, }}, <istream> = {<ios> = {<_ios_fields> = {_strbuf = 0x88cb9b4, _tie = 0x1, _width = 16, _flags = 0, 
+        _fill = -1073744756, _state = 26 '\032', _exceptions = 193 'Á', 
+        _precision = -1073744734, _arrays = 0x2897c0}, _vptr. = 0x0}, 
+    _vb.ios = 0xbfffcb5c, _gcount = 0}, <No data fields>}
+total_cycles = -1073755116
+noise = 1
+seed = 0
+(kdbg)whatis (net)[0]
+type = perceptron
+(kdbg)whatis (net)[1]
+type = perceptron
+(kdbg)whatis (net)[2]
+type = perceptron
+(kdbg)whatis (net)[3]
+type = perceptron
+(kdbg)whatis (net)[4]
+type = perceptron
+(kdbg)whatis (net)[5]
+type = perceptron
+(kdbg)whatis (net)[6]
+type = perceptron
+(kdbg)whatis (net)[7]
+type = perceptron
+(kdbg)whatis (net)[8]
+type = perceptron
+(kdbg)whatis (net)[9]
+type = perceptron
+(kdbg)whatis (net)[10]
+type = perceptron
+(kdbg)whatis (net)[11]
+type = perceptron
+(kdbg)whatis (net)[12]
+type = perceptron
+(kdbg)whatis (net)[13]
+type = perceptron
+(kdbg)whatis (net)[14]
+type = perceptron
+(kdbg)whatis (net)[15]
+type = perceptron
+(kdbg)whatis (net)[16]
+type = perceptron
+(kdbg)whatis (net)[17]
+type = perceptron
+(kdbg)whatis (net)[18]
+type = perceptron
+(kdbg)whatis (net)[19]
+type = perceptron
+(kdbg)whatis (net)[20]
+type = perceptron
+(kdbg)whatis (net)[21]
+type = perceptron
+(kdbg)whatis (net)[22]
+type = perceptron
+(kdbg)whatis (net)[23]
+type = perceptron
+(kdbg)whatis (net)[24]
+type = perceptron
+(kdbg)whatis (net)[25]
+type = perceptron
+(kdbg)whatis (letterbase)[0]
+type = grid
+(kdbg)whatis (letterbase)[1]
+type = grid
+(kdbg)whatis (letterbase)[2]
+type = grid
+(kdbg)whatis (letterbase)[3]
+type = grid
+(kdbg)whatis (letterbase)[4]
+type = grid
+(kdbg)whatis (letterbase)[5]
+type = grid
+(kdbg)whatis (letterbase)[6]
+type = grid
+(kdbg)whatis (letterbase)[7]
+type = grid
+(kdbg)whatis (letterbase)[8]
+type = grid
+(kdbg)whatis (letterbase)[9]
+type = grid
+(kdbg)whatis (letterbase)[10]
+type = grid
+(kdbg)whatis (letterbase)[11]
+type = grid
+(kdbg)whatis (letterbase)[12]
+type = grid
+(kdbg)whatis (letterbase)[13]
+type = grid
+(kdbg)whatis (letterbase)[14]
+type = grid
+(kdbg)whatis (letterbase)[15]
+type = grid
+(kdbg)whatis (letterbase)[16]
+type = grid
+(kdbg)whatis (letterbase)[17]
+type = grid
+(kdbg)whatis (letterbase)[18]
+type = grid
+(kdbg)whatis (letterbase)[19]
+type = grid
+(kdbg)whatis (letterbase)[20]
+type = grid
+(kdbg)whatis (letterbase)[21]
+type = grid
+(kdbg)whatis (letterbase)[22]
+type = grid
+(kdbg)whatis (letterbase)[23]
+type = grid
+(kdbg)whatis (letterbase)[24]
+type = grid
+(kdbg)whatis (letterbase)[25]
+type = grid
+(kdbg)whatis infile
+type = ifstream
+(kdbg)whatis (infile).__my_fb
+Type _ios_fields has no component named __my_fb.
+(kdbg)step
+corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:400
+/home/nitehawk/perceptron/perceptron/main.cpp:400:9985:beg:0x8049aec
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:400
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 0
+(kdbg)whatis percept
+type = perceptron &
+(kdbg)cont
+
+Breakpoint 2, corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1)
+    at main.cpp:423
+/home/nitehawk/perceptron/perceptron/main.cpp:423:10508:beg:0x8049b76
+(kdbg)info breakpoints
+Num Type           Disp Enb Address    What
+1   breakpoint     keep y   0x08049278 in main at main.cpp:130
+	breakpoint already hit 1 time
+2   breakpoint     keep y   0x08049b76 in corrupt(perceptron &, float, int)
+                                       at main.cpp:419
+	breakpoint already hit 1 time
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:423
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 0
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1934870500
+(kdbg)step
+/home/nitehawk/perceptron/perceptron/main.cpp:425:10537:beg:0x8049b7c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:425
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 0
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)step
+/home/nitehawk/perceptron/perceptron/main.cpp:419:10434:beg:0x8049b87
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:419
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 1
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)step
+/home/nitehawk/perceptron/perceptron/main.cpp:422:10479:beg:0x8049b89
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:422
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 1
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)step
+/home/nitehawk/perceptron/perceptron/main.cpp:427:10573:beg:0x8049b8c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:427
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 1
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)step
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b95
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 1
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)step
+/home/nitehawk/perceptron/perceptron/main.cpp:431:10683:beg:0x8049b9c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:431
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 1
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 4
+(kdbg)step
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b9d
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 2
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 4
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:430:10655:beg:0x8049ba0
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:430
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 2
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 4
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:431:10683:beg:0x8049ba3
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:431
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 2
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 0
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:427:10573:beg:0x8049b8c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:427
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 2
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 0
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b95
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 2
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 0
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:431:10683:beg:0x8049b9c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:431
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 2
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 8
+(kdbg)print percept.weight[i]
+$1 = 0
+(kdbg)print percept.valuei]
+A parse error in expression, near `'.
+(kdbg)print percept.value[i]
+$2 = 1
+(kdbg)break main.cpp:431
+Breakpoint 3 at 0x8049b9c: file main.cpp, line 431.
+(kdbg)info breakpoints
+Num Type           Disp Enb Address    What
+1   breakpoint     keep y   0x08049278 in main at main.cpp:130
+	breakpoint already hit 1 time
+2   breakpoint     keep y   0x08049b76 in corrupt(perceptron &, float, int)
+                                       at main.cpp:419
+	breakpoint already hit 1 time
+3   breakpoint     keep y   0x08049b9c in corrupt(perceptron &, float, int)
+                                       at main.cpp:431
+(kdbg)delete 3
+(kdbg)info breakpoints
+Num Type           Disp Enb Address    What
+1   breakpoint     keep y   0x08049278 in main at main.cpp:130
+	breakpoint already hit 1 time
+2   breakpoint     keep y   0x08049b76 in corrupt(perceptron &, float, int)
+                                       at main.cpp:419
+	breakpoint already hit 1 time
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b9d
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 3
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 8
+(kdbg)print percept.weight[i]
+$3 = 0
+(kdbg)print percept.value[i]
+$4 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:430:10655:beg:0x8049ba0
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:430
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 3
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 8
+(kdbg)print percept.weight[i]
+$5 = 0
+(kdbg)print percept.value[i]
+$6 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:431:10683:beg:0x8049ba3
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:431
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 3
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)print percept.weight[i]
+$7 = 0
+(kdbg)print percept.value[i]
+$8 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:427:10573:beg:0x8049b8c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:427
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 3
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)print percept.weight[i]
+$9 = 0
+(kdbg)print percept.value[i]
+$10 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b95
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 3
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)print percept.weight[i]
+$11 = 0
+(kdbg)print percept.value[i]
+$12 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:431:10683:beg:0x8049b9c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:431
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 3
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 12
+(kdbg)print percept.weight[i]
+$13 = 0
+(kdbg)print percept.value[i]
+$14 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b9d
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 4
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 12
+(kdbg)print percept.weight[i]
+$15 = 0
+(kdbg)print percept.value[i]
+$16 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:430:10655:beg:0x8049ba0
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:430
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 4
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 12
+(kdbg)print percept.weight[i]
+$17 = 0
+(kdbg)print percept.value[i]
+$18 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:431:10683:beg:0x8049ba3
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:431
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 4
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)print percept.weight[i]
+$19 = 0
+(kdbg)print percept.value[i]
+$20 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:427:10573:beg:0x8049b8c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:427
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 4
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)print percept.weight[i]
+$21 = 0
+(kdbg)print percept.value[i]
+$22 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b95
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 4
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 1
+(kdbg)print percept.weight[i]
+$23 = 0
+(kdbg)print percept.value[i]
+$24 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:431:10683:beg:0x8049b9c
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:431
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 4
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 16
+(kdbg)print percept.weight[i]
+$25 = 0
+(kdbg)print percept.value[i]
+$26 = 1
+(kdbg)next
+/home/nitehawk/perceptron/perceptron/main.cpp:429:10625:beg:0x8049b9d
+(kdbg)bt
+#0  corrupt (percept=@0xbfffda88, learning_rate=0.5, noise=1) at main.cpp:429
+#1  0x8049297 in main (argc=3, argv=0xbffff8e4) at main.cpp:130
+(kdbg)info locals
+i = 5
+percept = (perceptron &) @0xbfffda88: {weight = {0, -0.5, 
+    0 <repeats 18 times>, 0.5, 0 <repeats 11 times>, -0.5, -0.5, -0.5, 0.5}, 
+  value = {1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}, desired = 0, actual = 0}
+noise = 1
+sum = 6.0255834e-44
+weight = 6.0255834e-44
+value = 16
+(kdbg)print percept.weight[i]
+$27 = 0
+(kdbg)print percept.value[i]
+$28 = 0
+(kdbg)

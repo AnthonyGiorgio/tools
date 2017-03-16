@@ -1,0 +1,34 @@
+CS667						Anthony Giorgio
+Prof. Grgas					03/12/2000
+
+			Assignment 4
+1)
+a) I created a master pattern file from the given data using a parser I wrote in C++.
+It converted all the commas to spaces and replaced the iris name field with three
+boolean values.  A copy of the source listing is attached.
+
+b) The training set contained 96 patterns.  This odd number was reached by subtracting out
+the test and validation data sets.  The validation set contained 45 patterns.  I took 15
+patterns from each iris type to arrive at this number.  The test set contained 9 patterns,
+with three patterns from each type.
+
+c) The test data was classified correctly every time.  There was no significant error in
+any of the test classifications.  Either the network worked properly or I made a fundamental
+flaw in my network design and implementation.
+
+I tried many different networks, but had poorer results with a wider network.  The more
+layers I added, the worse the error became.  I decided on a single hidden layer since I
+had the most success with it.  I think my network turned out well, but I am not sure
+it is an optimum design.
+
+2)
+a) See above (!).
+
+b) See attached sheets.
+
+c) See attached sheets.
+
+d) See attached sheets.
+
+
+

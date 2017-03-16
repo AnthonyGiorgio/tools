@@ -1,0 +1,46 @@
+# KDE Config File
+[feedback.kdevprj]
+install_location=
+dist=true
+install=false
+type=DATA
+[Config for BinMakefileAm]
+ldflags=
+cxxflags=-O0 -g3 -Wall
+bin_program=feedback
+[feedback/docs/Makefile.am]
+sub_dirs=
+type=normal
+[feedback/docs/en/Makefile.am]
+sub_dirs=
+type=normal
+[LFV Groups]
+Others=*,
+groups=Headers,Sources,Others,
+Sources=*.cpp,*.c,*.cc,*.C,*.cxx,*.ec,*.ecpp,*.lxx,*.l++,*.ll,*.l,
+Headers=*.h,*.hxx,*.hpp,*.H,
+[feedback/Makefile.am]
+files=feedback/main.cpp,
+sub_dirs=
+type=prog_main
+[feedback/main.cpp]
+install_location=
+dist=true
+install=false
+type=SOURCE
+[General]
+makefiles=Makefile.am,feedback/Makefile.am,feedback/docs/Makefile.am,feedback/docs/en/Makefile.am,
+version_control=CVS
+author=Anthony Giorgio
+project_type=normal_cpp
+sub_dir=feedback/
+lfv_open_groups=
+workspace=1
+version=0.1
+project_name=Feedback
+email=agiorg01@longisland.poly.edu
+kdevprj_version=1.1 beta1
+[Makefile.am]
+files=feedback.kdevprj,
+sub_dirs=feedback,
+type=normal

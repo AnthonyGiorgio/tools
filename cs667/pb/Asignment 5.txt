@@ -1,0 +1,17 @@
+CS667									Anthony Giorgio
+Prof. Grgas								4/2/00
+
+Assignment 5
+
+	I generated my training, validation, and test data from the Peterson-Barney data given in class.  I wrote a parser in C++ to convert the raw data file into a pattern file usable by SNNS.  My training file contained 1101 total patterns.  This is approximately 73% of the total data set.  I chose this amount to maximize the amount of patterns that the network would be exposed to.  My validation set contained 300 total patterns.  This was about 20% of the total data set.  My test set contained 118 patterns.  This was the remaining 7% of the data set.  This set was small enough not to detract from the other data sets, but large enough to provide good testing examples.  
+
+	My learning rate was 0.01.  I tried higher rates, but the network would begin to oscillate at points, so I was forced to reduce the rate.  I tried as low as 0.0001, but the network took far too long to learn.
+
+	I removed the mean from the data set before breaking it up into the three patterns sets.   I summed each of the frequencies, and divided the result by 1519.  I then iterated through the pattern file and subtracted the average from the given frequency.  I scaled the outputs to be -0.5773 for a negative response, and 0.5773 for a positive response.  I used 10 boolean values to indicate which of the vowels was to be recognized.  These values were calculated by finding the maximum ratio between the slope of the hyperbolic tangent function and the distance from zero.
+
+	My network was three layers wide.  It contained four input neurons, with each one wired to a frequency peak.  It contained two hidden layers.  The first hidden layer contained seven neurons, and the second layer contained nine neurons.  The output layer contained ten neurons, each one designed for one vowel type.  The network is fully connected.  The activation function for the network was the hyperbolic tangent function.  
+
+	I tried using a network with only one hidden layer, and found that it could not adequately generalize and fit the given data.  The mean squared error was consistently higher with one hidden layer than with two.  I also tried a network with three hidden layers, which resulted in a slightly better mean squared error value than the single layer network did.  Unfortunately, it did not perform as well as the two layer network did.
+
+	I was able to train my network to achieve a training mean squared error value of slightly less than 1.0.  My test data confirmed this error value.  Tuning various parameters (such as learning rate, initialization values, and validation steps) did not significantly affect the network's behavior.
+

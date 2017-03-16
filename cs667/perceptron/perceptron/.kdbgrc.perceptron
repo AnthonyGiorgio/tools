@@ -1,0 +1,15 @@
+# KDE Config File
+[Breakpoint 0]
+Enabled=true
+Temporary=false
+File=main.cpp
+Line=129
+[Breakpoint 1]
+Enabled=true
+Temporary=false
+File=main.cpp
+Line=418
+[General]
+WorkingDirectory=
+FileVersion=1
+ProgramArgs=.5 1
