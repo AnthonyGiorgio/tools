@@ -16,7 +16,7 @@ import os
 
 if len(sys.argv) < 2:
     print("No filename specified.")
-    exit -1
+    exit(-1)
 
 filename = sys.argv[1]
 
